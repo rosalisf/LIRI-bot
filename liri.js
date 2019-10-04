@@ -5,4 +5,8 @@ const inquirer = require("inquirer");
 
 // Code other "require" nodes
 
+// Make userInput constructer for inquirer
+
+// Set Spotify API as queries?
+
 //
