@@ -2,6 +2,7 @@ const dotenv = require("dotenv").config();
 const fs = require("fs");
 const axios = require("axios");
 const inquirer = require("inquirer");
+const spotify = require('node-spotify-api');
 
 // Set axios GET method
 
@@ -19,7 +20,18 @@ function userInput() {
       name: "queryString",
       message: "Enter your search"
     }
-  ]);
+  ])
+  .then(answers => {
+    let queryUrl = ""; //This will be passed to the api call as the search term.
+    if (answers.queryType === "Music Artists") {
+      queryUrl = "";
+    } else if (answers.queryType === "Upcoming Concerts") {
+      queryUrl = "";
+    } else {
+      console.log("Whoops, can't find that...");
+    });
+}
+
 }
 
 // Set Spotify API and SeetGeek API as queries?
