@@ -8,6 +8,5 @@ exports.spotify = {
 };
 
 exports.seetgeek = {
-  id: process.env.SEATGEEK_ID,
-  secret: process.env.SEATGEEK_SECRET
+  id: process.env.SEATGEEK_ID
 };
