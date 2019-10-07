@@ -33,7 +33,7 @@ function userInput() {
           { type: "track", query: answers.queryString, limit: 1 },
           function(err, data) {
             if (err) {
-              return console.log("Error occurred: " + err);
+              return console.log("Whoops, can't find that... " + err);
             }
             // Song
             console.log(JSON.stringify(data.tracks.items[0].name, null, 10));
