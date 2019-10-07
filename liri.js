@@ -13,19 +13,19 @@ function userInput() {
     {
       name: "queryType",
       type: "list",
-      message: "Do you want to search music artists or upcoming concerts?",
-      choices: ["Music Artists", "Upcoming Concerts"]
+      message: "Do you want to search songs or upcoming concerts?",
+      choices: ["Song", "Upcoming Concerts"]
     },
     {
       name: "queryString",
-      message: "Enter your search"
+      message: "Enter song or artist/band for upcoming concerts"
     }
   ])
   .then(answers => {
     let queryUrl = ""; //This will be passed to the api call as the search term.
-    if (answers.queryType === "Music Artists") {
+    if (answers.queryType === "Songs") {
       queryUrl = "";
-    } else if (answers.queryType === "Upcoming Concerts") {
+    } else if (answers.queryType === "Artist/Band") {
       queryUrl = "https://api.seatgeek.com/2/events?client_id=process.env.SEATGEEK_ID";
     } else {
       console.log("Whoops, can't find that...");
@@ -38,7 +38,15 @@ function userInput() {
 
 // Set response data as a variable and retrieve it as JSON
 
+// Set spotify-this-song function
+
+// Set concert-this function
+
 // Have the userInput have a recursion function to allow user to make more queries while still in the app
+
+// Set the default song to "Don't Turn Around by Ace of Base" if user does not provide a song in the Music Artist query.
+
+// Set the default concert to "Don't Turn Around by Ace of Base" if user does not provide a song in the Music Artist query.
 
 // Set query parameters in the userInput function
 
