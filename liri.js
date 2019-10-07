@@ -26,25 +26,27 @@ function userInput() {
     if (answers.queryType === "Music Artists") {
       queryUrl = "";
     } else if (answers.queryType === "Upcoming Concerts") {
-      queryUrl = "";
+      queryUrl = "https://api.seatgeek.com/2/events?client_id=process.env.SEATGEEK_ID";
     } else {
       console.log("Whoops, can't find that...");
     });
-}
-
+    
+  }
 }
 
 // Set Spotify API and SeetGeek API as queries?
 
-// Set response data as a variable and retrieve it in JSON
+// Set response data as a variable and retrieve it as JSON
 
-// Have the userInput have a recursion function to allow user to make more queries while staying in the app
+// Have the userInput have a recursion function to allow user to make more queries while still in the app
 
 // Set query parameters in the userInput function
 
-// Set divider variable to add in query parameters so results on the console are organized
+// Set divider variable to add in query parameters so results on the console are a litle more organized
 
-// Set an fs function so every query is appended into a txt file
+// Make a fs function so every query is appended into a txt file
 
-// Call functions
+// Call functions 
+
+// Explain entire process in README
 userInput();
