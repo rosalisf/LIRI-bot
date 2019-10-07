@@ -28,18 +28,35 @@ function userInput() {
       }
     ])
     .then(answers => {
-      console.log(answers);
       if (answers.queryType === "Songs") {
-        spotify.search({ type: "track", query: "Don't Turn Around" }, function(
-          err,
-          data
-        ) {
-          if (err) {
-            return console.log("Error occurred: " + err);
-          }
+        spotify.search(
+          { type: "track", query: answers.queryString, limit: 1 },
+          function(err, data) {
+            if (err) {
+              return console.log("Error occurred: " + err);
+            }
+            // Song
+            console.log(JSON.stringify(data.tracks.items[0].name, null, 10));
 
-          console.log(data);
-        });
+            // Artist
+            console.log(
+              JSON.stringify(
+                data.tracks.items[0].album.artists[0].name,
+                null,
+                10
+              )
+            );
+            // Album
+            console.log(
+              JSON.stringify(data.tracks.items[0].album.name, null, 10)
+            );
+
+            // Preview link
+            console.log(
+              JSON.stringify(data.tracks.items[0].preview_url, null, 10)
+            );
+          }
+        );
       } else if (answers.queryType === "Artist/Band") {
         queryUrl =
           "https://api.seatgeek.com/2/events?client_id=process.env.SEATGEEK_ID";
