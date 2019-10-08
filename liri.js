@@ -27,6 +27,9 @@ function userInput() {
         message: "Enter song or artist/band for upcoming concerts"
       }
     ])
+
+    // Set response data as a variable and retrieve it as JSON
+
     .then(answers => {
       if (answers.queryType === "Songs") {
         spotify.search(
@@ -36,24 +39,36 @@ function userInput() {
               return console.log("Whoops, can't find that... " + err);
             }
             // Song
-            console.log(JSON.stringify(data.tracks.items[0].name, null, 10));
-
+            console.log(
+              JSON.stringify(
+                "Song Title: " + data.tracks.items[0].name,
+                null,
+                10
+              )
+            );
             // Artist
             console.log(
               JSON.stringify(
-                data.tracks.items[0].album.artists[0].name,
+                "Artist/Band: " + data.tracks.items[0].album.artists[0].name,
                 null,
                 10
               )
             );
             // Album
             console.log(
-              JSON.stringify(data.tracks.items[0].album.name, null, 10)
+              JSON.stringify(
+                "Album Title: " + data.tracks.items[0].album.name,
+                null,
+                10
+              )
             );
-
             // Preview link
             console.log(
-              JSON.stringify(data.tracks.items[0].preview_url, null, 10)
+              JSON.stringify(
+                "Spotify Preview Link: " + data.tracks.items[0].preview_url,
+                null,
+                10
+              )
             );
           }
         );
@@ -65,10 +80,6 @@ function userInput() {
       }
     });
 }
-
-// Set Spotify API and SeetGeek API as queries?
-
-// Set response data as a variable and retrieve it as JSON
 
 // Set spotify-this-song function
 
