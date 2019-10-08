@@ -2,14 +2,10 @@ const dotenv = require("dotenv").config();
 const fs = require("fs");
 const axios = require("axios");
 const inquirer = require("inquirer");
-const Spotify = require("node-spotify-api");
+const SpotifyConnect = require("./spotify.js");
+const SeatGeek = require("./seatgeek.js");
 
 // Set axios GET method
-
-var spotify = new Spotify({
-  id: process.env.SPOTIFY_ID,
-  secret: process.env.SPOTIFY_SECRET
-});
 
 // Make userInput function for inquirer
 
@@ -20,7 +16,7 @@ function userInput() {
         name: "queryType",
         type: "list",
         message: "Do you want to search songs or artist/band?",
-        choices: ["Songs", "Artist/Band"]
+        choices: ["spotify-this-song", "concert-this"]
       },
       {
         name: "queryString",
@@ -31,56 +27,27 @@ function userInput() {
     // Set response data as a variable and retrieve it as JSON
 
     .then(answers => {
-      if (answers.queryType === "Songs") {
-        spotify.search(
-          { type: "track", query: answers.queryString, limit: 1 },
-          function(err, data) {
-            if (err) {
-              return console.log("Whoops, can't find that... " + err);
-            }
-            // Song
-            console.log(
-              JSON.stringify(
-                "Song Title: " + data.tracks.items[0].name,
-                null,
-                10
-              )
-            );
-            // Artist
-            console.log(
-              JSON.stringify(
-                "Artist/Band: " + data.tracks.items[0].album.artists[0].name,
-                null,
-                10
-              )
-            );
-            // Album
-            console.log(
-              JSON.stringify(
-                "Album Title: " + data.tracks.items[0].album.name,
-                null,
-                10
-              )
-            );
-            // Preview link
-            console.log(
-              JSON.stringify(
-                "Spotify Preview Link: " + data.tracks.items[0].preview_url,
-                null,
-                10
-              )
-            );
-          }
+      fs.appendFile("SongsAndConcerts.txt", answers, err => {
+        if (err) {
+          console.log(err);
+        }
+      });
+      if (answers.queryType === "spotify-this-song") {
+        spotify.querySpotify(
+          "track",
+          answers.queryString,
+          spotify.spotifyResponse
         );
-      } else if (answers.queryType === "Artist/Band") {
-        queryUrl =
-          "https://api.seatgeek.com/2/events?client_id=process.env.SEATGEEK_ID";
+      } else if (answers.queryType === "concert-this") {
+        seatgeek.querySeatGeek(answers.queryString, seatgeek.responseCallback);
       } else {
         console.log("Whoops, can't find that...");
       }
-    });
+    })
+    .catch(err => console.log(err));
 }
-
+const spotify = new SpotifyConnect(userInput);
+const seatgeek = new SeatGeek(userInput);
 // Set spotify-this-song function
 
 // Set concert-this function

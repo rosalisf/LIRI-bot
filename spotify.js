@@ -1,23 +1,31 @@
 const Spotify = require("node-spotify-api");
 
-module.exports = function SpotifyConnect() {
+module.exports = function SpotifyConnect(recurse) {
+  console.log(recurse);
+  this.recurse = recurse;
   this.queryLimit = 1;
+  this.defaultSong = "Don't Turn Around";
+  var self = this;
   this.spotify = new Spotify({
     id: process.env.SPOTIFY_ID,
     secret: process.env.SPOTIFY_SECRET
   });
 
   this.querySpotify = function(type, queryString, callback) {
-    this.spotify.search(
-      { type: type, query: queryString, limit: this.queryLimit },
-      callback
-    );
+    this.spotify
+      .search({
+        type: type,
+        query: queryString || this.defaultSong,
+        limit: this.queryLimit
+      })
+      .then(response => callback(response))
+      .catch(err => {
+        console.log("Whoops, can't find that... " + err);
+        self.recurse();
+      });
   };
 
-  this.spotifyResponse = function(err, data) {
-    if (err) {
-      return console.log("Whoops, can't find that... " + err);
-    }
+  this.spotifyResponse = function(data) {
     // Song
     console.log(
       JSON.stringify("Song Title: " + data.tracks.items[0].name, null, 10)
@@ -46,5 +54,6 @@ module.exports = function SpotifyConnect() {
         10
       )
     );
+    console.log(self.recurse());
   };
 };
