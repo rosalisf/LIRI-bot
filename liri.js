@@ -20,7 +20,7 @@ function userInput() {
       },
       {
         name: "queryString",
-        message: "Enter song or artist/band for upcoming concerts"
+        message: "Enter song or enter an artist/band for upcoming concerts"
       }
     ])
 

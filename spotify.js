@@ -1,9 +1,9 @@
 const Spotify = require("node-spotify-api");
 
 module.exports = function SpotifyConnect(recurse) {
-  console.log(recurse);
+  //   console.log(recurse);
   this.recurse = recurse;
-  this.queryLimit = 1;
+  this.queryLimit = 5;
   this.defaultSong = "Don't Turn Around";
   var self = this;
   this.spotify = new Spotify({

@@ -10,7 +10,7 @@ module.exports = function SeatGeek(recurse) {
   this.querySeatGeek = function(artist, callback) {
     const queryURL =
       "https://api.seatgeek.com/2/events?performers.slug=" +
-      //https://stackoverflow.com/questions/1144783/how-to-replace-all-occurrences-of-a-string
+      // https://stackoverflow.com/questions/1144783/how-to-replace-all-occurrences-of-a-string
       (utf8.encode(artist.toLowerCase().replace(new RegExp(/ /g), "-")) ||
         this.defaultConcert) +
       "&client_id=" +
