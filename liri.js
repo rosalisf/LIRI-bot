@@ -27,11 +27,6 @@ function userInput() {
     // Set response data as a variable and retrieve it as JSON
 
     .then(answers => {
-      fs.appendFile("SongsAndConcerts.txt", answers, err => {
-        if (err) {
-          console.log(err);
-        }
-      });
       if (answers.queryType === "spotify-this-song") {
         spotify.querySpotify(
           "track",
@@ -43,9 +38,36 @@ function userInput() {
       } else {
         console.log("Whoops, can't find that...");
       }
+      fs.appendFile(
+        "SongsAndConcerts.txt",
+        JSON.stringify(answers, null, 10),
+        err => {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("SongsandConcerts.txt was updated!");
+          }
+        }
+      );
+      // inquirer
+      //   .prompt([
+      //     {
+      //       name: "searchAgain",
+      //       type: "confirm",
+      //       message: "Would you like to search again?"
+      //     }
+      //   ])
+      //   .then(answers => {
+      //     if (answers.searchAgain) {
+      //       userInput();
+      //     } else {
+      //       console.log("See ya later alligator!");
+      //     }
+      //   });
     })
     .catch(err => console.log(err));
 }
+
 const spotify = new SpotifyConnect(userInput);
 const seatgeek = new SeatGeek(userInput);
 // Set spotify-this-song function
@@ -61,6 +83,8 @@ const seatgeek = new SeatGeek(userInput);
 // Set query parameters in the userInput function
 
 // Set divider variable to add in query parameters so results on the console are a litle more organized
+
+// Make one last prompt to ask user if they want to make another query and if they say no the console will say goodbye and end the function
 
 // Make a fs function so every query is appended into a txt file
 
