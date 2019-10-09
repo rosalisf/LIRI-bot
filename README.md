@@ -34,4 +34,6 @@ This program allows you to search basic song information and check if your favor
 
 ![LIRI concert-this default](rfreeb/Bootcamp_Week_11/NUEVA201907FSF3/11-js-constructors/LIRI-bot/liri_6.png)
 
-7. LIRI-bot will record all info printed on the command line to a txt file called SongsAndConcerts.txt
+7. LIRI-bot will record all info printed on the command line to a txt file called SongsAndConcerts.txt and will always let you know that it was updated if no errors occur.
+
+![LIRI print](rfreeb/Bootcamp_Week_11/NUEVA201907FSF3/11-js-constructors/LIRI-bot/liri_7.png)
