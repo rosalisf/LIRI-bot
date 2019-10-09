@@ -8,11 +8,11 @@ This program allows you to search basic song information and check if your favor
 
 1. Type in node liri.js in the command line to activate the LIRI program.
 
-![LIRI startup](rfreeb/Bootcamp_Week_11/NUEVA201907FSF3/11-js-constructors/liri_1.png)
+![LIRI startup](https://github.com/rosalisf/LIRI-bot/blob/master/liri_1.png)
 
 2. LIRI-bot will then ask you if you want to search a song or an artist.
 
-![LIRI choose](rfreeb/Bootcamp_Week_11/NUEVA201907FSF3/11-js-constructors/LIRI-bot/liri_1.png)
+![LIRI choose](https://github.com/rosalisf/LIRI-bot/blob/master/liri_1.png)
 
 3. If you have chosen 'spotify-this-song' type in a song name and the command line will give you the song title, the artist/band name, the album it's from and a preview link from spotify.
 
